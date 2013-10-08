@@ -1,6 +1,16 @@
 # shortcut to this dotfiles path is $DOTFILES
-export DOTFILES=$HOME/dotfiles
+export DOTFILES=$HOME/.dotfiles
 export OS=`uname -s`
+
+# Java
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JRE_HOME=`/usr/libexec/java_home -v 1.7`
+export CLASSPATH="/usr/local/Cellar/tomcat/7.0.42/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.42/libexec/bin/tomcat-juli.jar"
+
+# Tomcat Home
+export CATALINA_BASE="/usr/local/Cellar/tomcat/7.0.42/libexec"
+export CATALINA_HOME="/usr/local/Cellar/tomcat/7.0.42/libexec"
+export CATALINA_TMPDIR="/usr/local/Cellar/tomcat/7.0.42/libexec/temp"
 
 # source every .sh file in this rep
 for config_file in $(find $DOTFILES -iname "*.sh"); do
