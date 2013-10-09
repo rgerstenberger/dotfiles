@@ -1,23 +1,13 @@
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
-export OS=`uname -s`
-
-# Java
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export JRE_HOME=`/usr/libexec/java_home -v 1.7`
-export CLASSPATH="/usr/local/Cellar/tomcat/7.0.42/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.42/libexec/bin/tomcat-juli.jar"
-
-# Tomcat Home
-export CATALINA_BASE="/usr/local/Cellar/tomcat/7.0.42/libexec"
-export CATALINA_HOME="/usr/local/Cellar/tomcat/7.0.42/libexec"
-export CATALINA_TMPDIR="/usr/local/Cellar/tomcat/7.0.42/libexec/temp"
+  export OS=`uname -s`
 
 # source every .sh file in this rep
 for config_file in $(find $DOTFILES -iname "*.sh"); do
   source $config_file
 done
 
-# If OSX 
+# If OSX
 if [ $OS == "Darwin" ]; then
   # Source .sh.osx files if we're running OSX
   for config_file in $(find $DOTFILES -iname "*.sh.osx"); do
@@ -42,3 +32,16 @@ source ~/.ssh/ssh-agent-setup.sh
 
 # Load NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
+
+#setup z
+. ~/z/z.sh
+
+# Java
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JRE_HOME=`/usr/libexec/java_home -v 1.7`
+export CLASSPATH="/usr/local/Cellar/tomcat/7.0.42/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.42/libexec/bin/tomcat-juli.jar"
+
+# Tomcat Home
+export CATALINA_BASE="/usr/local/Cellar/tomcat/7.0.42/libexec"
+export CATALINA_HOME="/usr/local/Cellar/tomcat/7.0.42/libexec"
+export CATALINA_TMPDIR="/usr/local/Cellar/tomcat/7.0.42/libexec/temp"

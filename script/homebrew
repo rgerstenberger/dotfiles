@@ -31,6 +31,7 @@ packages=(
   node
   grc
   bash-completion
+  z
 )
 
 # Make sure we’re using the latest Homebrew
