@@ -28,7 +28,6 @@ packages=(
   # Install everything else
   git
   htop
-  node
   grc
   bash-completion
   z
