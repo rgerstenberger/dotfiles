@@ -20,17 +20,6 @@ function ruby_info {
 }
 ruby_info="$(ruby_info)"
 
-# Create the scm_status info string
-function scm_status {
-  zero=0;
-  if [[ $SCM_DIRTY -eq $zero ]]; then
-    echo -e "${reset_color}${red}"
-  else
-    echo -e "${reset_color}${green}"
-  fi
-}
-scm_status="$(scm_status)"
-
 #added TITLEBAR for updating the tab and window titles with the pwd
 case $TERM in
   xterm*)
@@ -40,7 +29,7 @@ case $TERM in
   TITLEBAR=""
   ;;
 esac
-PROMPT="${TITLEBAR}${cyan}\u${ssh_connection_info}${reset_color}${normal}:${reset_color}${green}\w ${ruby_info}${reset_color}${normal}\$(scm_char) ${scm_status}\$(scm_prompt_info)\n${reset_color}${green}❯${reset_color}${normal} "
+PROMPT="${TITLEBAR}${cyan}\u${ssh_connection_info}${reset_color}${normal}:${reset_color}${green}\w ${ruby_info}${reset_color}${normal}\$(scm_char) \$(scm_prompt_info)\n${reset_color}${green}❯${reset_color}${normal} "
 
 
 # scm themeing

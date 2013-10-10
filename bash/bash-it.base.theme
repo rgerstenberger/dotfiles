@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "$DOTFILES/bash/bash-it.color.theme"
+
 THEME_PROMPT_HOST='\H'
 SCM_THEME_PROMPT_DIRTY=' ✗'
 SCM_THEME_PROMPT_CLEAN=' ✓'
@@ -70,12 +72,22 @@ function scm_prompt_info {
 }
 
 function git_prompt_vars {
-  if [[ -n $(git status -s 2> /dev/null |grep -v ^# |grep -v "working directory clean") ]]; then
-    SCM_DIRTY=1
-     SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_DIRTY}
-  else
+  # Capture the output of the "git status" command.
+  GIT_STATUS="$(git status 2> /dev/null)"
+
+  # Set color based on clean/staged/dirty.
+  if [[ ${GIT_STATUS} =~ "working directory clean" ]]; then
+    GIT_STATE="\033[0;32m"
     SCM_DIRTY=0
-     SCM_STATE=${GIT_THEME_PROMPT_CLEAN:-$SCM_THEME_PROMPT_CLEAN}
+    SCM_STATE=${GIT_THEME_PROMPT_CLEAN:-$SCM_THEME_PROMPT_CLEAN}
+  elif [[ ${GIT_STATUS} =~ "Changes to be committed" ]]; then
+    GIT_STATE="\033[0;33m"
+    SCM_DIRTY=1
+    SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_DIRTY}
+  else
+    GIT_STATE="\033[0;31m"
+    SCM_DIRTY=1
+    SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_DIRTY}
   fi
   SCM_PREFIX=${GIT_THEME_PROMPT_PREFIX:-$SCM_THEME_PROMPT_PREFIX}
   SCM_SUFFIX=${GIT_THEME_PROMPT_SUFFIX:-$SCM_THEME_PROMPT_SUFFIX}
@@ -150,7 +162,7 @@ function virtualenv_prompt {
 # backwards-compatibility
 function git_prompt_info {
   git_prompt_vars
-  echo -e "$SCM_PREFIX$SCM_BRANCH$SCM_STATE$SCM_SUFFIX"
+  echo -e "${GIT_STATE}$SCM_PREFIX$SCM_BRANCH$SCM_STATE$SCM_SUFFIX"
 }
 
 function svn_prompt_info {
