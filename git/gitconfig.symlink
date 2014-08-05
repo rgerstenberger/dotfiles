@@ -53,7 +53,7 @@
 [merge]
         # Include summaries of merged commits in newly created merge commit messages
         log = true
-
+        tool = p4merge
         # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
         remote = origin
@@ -70,3 +70,6 @@
         prompt = false
 [help]
         autocorrect = 0
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
