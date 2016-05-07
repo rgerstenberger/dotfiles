@@ -34,6 +34,8 @@ PROMPT="${TITLEBAR}${cyan}\u${ssh_connection_info}${reset_color}${normal}:${rese
 
 # scm themeing
 SCM_THEME_PROMPT_DIRTY=" ✗"
+SCM_THEME_PROMPT_STAGED=" +"
+SCM_THEME_PROMPT_STAGED_AND_DIRTY=" ✗+"
 SCM_THEME_PROMPT_CLEAN=" ✓"
 SCM_THEME_PROMPT_PREFIX="("
 SCM_THEME_PROMPT_SUFFIX=")"

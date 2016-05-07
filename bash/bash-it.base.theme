@@ -74,18 +74,31 @@ function scm_prompt_info {
 function git_prompt_vars {
   # Capture the output of the "git status" command.
   GIT_STATUS="$(git status 2> /dev/null)"
+  GIT_NUM_STAGED="$(git diff --cached --numstat | wc -l | awk {'print $1'})"
+  GIT_NUM_UNSTAGED="$(git diff --numstat | wc -l | awk {'print $1'})"
+  GIT_NUM_UNTRACKED="$(git ls-files --others --exclude-standard | wc -l | awk {'print $1'})"
+  GIT_BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
 
+  GIT_NUM_COMMITS_AHEAD="$(git log origin/master..$GIT_BRANCH_NAME | grep -c "commit")"
+
+  GIT_COLORED_STATUS="commits: $GIT_NUM_COMMITS_AHEAD ${echo_yellow}untracked: $GIT_NUM_UNTRACKED ${echo_red}changed: $GIT_NUM_UNSTAGED ${echo_green}added: $GIT_NUM_STAGED "
   # Set color based on clean/staged/dirty.
   if [[ ${GIT_STATUS} =~ "working directory clean" ]]; then
-    GIT_STATE="\033[0;32m"
+    GIT_STATE="$GIT_COLORED_STATUS${echo_bold_cyan}"
     SCM_DIRTY=0
     SCM_STATE=${GIT_THEME_PROMPT_CLEAN:-$SCM_THEME_PROMPT_CLEAN}
   elif [[ ${GIT_STATUS} =~ "Changes to be committed" ]]; then
-    GIT_STATE="\033[0;33m"
+    GIT_STATE="$GIT_COLORED_STATUS${echo_bold_yellow}"
     SCM_DIRTY=1
-    SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_DIRTY}
+    SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_STAGED}
+
+    if [[ ${GIT_STATUS} =~ "Changes not staged for commit" ]]; then
+      GIT_STATE="$GIT_COLORED_STATUS${echo_bold_orange}"
+      SCM_DIRTY=1
+      SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_STAGED_AND_DIRTY}
+    fi
   else
-    GIT_STATE="\033[0;31m"
+    GIT_STATE="$GIT_COLORED_STATUS${echo_bold_red}"
     SCM_DIRTY=1
     SCM_STATE=${GIT_THEME_PROMPT_DIRTY:-$SCM_THEME_PROMPT_DIRTY}
   fi

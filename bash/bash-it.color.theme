@@ -163,6 +163,10 @@ function __white   {
   echo "$(__color white $@)"
 }
 
+function __orange   {
+  echo "$(__color rgb 222 30 0 bold)"
+}
+
 function __rgb {
   echo "$(__color rgb $@)"
 }
@@ -190,7 +194,7 @@ blue="$(color reset blue)"
 purple="$(color reset magenta)"
 cyan="$(color reset cyan)"
 white="$(color reset white bold)"
-orange="$(color reset red fg bright)"
+orange="$(color reset orange)"
 
 bold_black="$(color black bold)"
 bold_red="$(color red bold)"
@@ -200,7 +204,7 @@ bold_blue="$(color blue bold)"
 bold_purple="$(color magenta bold)"
 bold_cyan="$(color cyan bold)"
 bold_white="$(color white bold)"
-bold_orange="$(color red fg bright bold)"
+bold_orange="$(color orange bold)"
 
 underline_black="$(color black underline)"
 underline_red="$(color red underline)"
@@ -210,7 +214,7 @@ underline_blue="$(color blue underline)"
 underline_purple="$(color magenta underline)"
 underline_cyan="$(color cyan underline)"
 underline_white="$(color white underline)"
-underline_orange="$(color red fg bright underline)"
+underline_orange="$(color orange underline)"
 
 background_black="$(color black bg)"
 background_red="$(color red bg)"
@@ -220,7 +224,7 @@ background_blue="$(color blue bg)"
 background_purple="$(color magenta bg)"
 background_cyan="$(color cyan bg)"
 background_white="$(color white bg bold)"
-background_orange="$(color red bg bright)"
+background_orange="$(color orange bg)"
 
 normal="$(color reset)"
 reset_color="$(__make_ansi '' 39)"
@@ -234,7 +238,7 @@ echo_blue="$(echo_color reset blue)"
 echo_purple="$(echo_color reset magenta)"
 echo_cyan="$(echo_color reset cyan)"
 echo_white="$(echo_color reset white bold)"
-echo_orange="$(echo_color reset red fg bright)"
+echo_orange="$(echo_color reset orange)"
 
 echo_bold_black="$(echo_color black bold)"
 echo_bold_red="$(echo_color red bold)"
@@ -244,7 +248,7 @@ echo_bold_blue="$(echo_color blue bold)"
 echo_bold_purple="$(echo_color magenta bold)"
 echo_bold_cyan="$(echo_color cyan bold)"
 echo_bold_white="$(echo_color white bold)"
-echo_bold_orange="$(echo_color red fg bright bold)"
+echo_bold_orange="$(echo_color orange bold)"
 
 echo_underline_black="$(echo_color black underline)"
 echo_underline_red="$(echo_color red underline)"
@@ -254,7 +258,7 @@ echo_underline_blue="$(echo_color blue underline)"
 echo_underline_purple="$(echo_color magenta underline)"
 echo_underline_cyan="$(echo_color cyan underline)"
 echo_underline_white="$(echo_color white underline)"
-echo_underline_orange="$(echo_color red fg bright underline)"
+echo_underline_orange="$(echo_color orange underline)"
 
 echo_background_black="$(echo_color black bg)"
 echo_background_red="$(echo_color red bg)"
@@ -264,7 +268,7 @@ echo_background_blue="$(echo_color blue bg)"
 echo_background_purple="$(echo_color magenta bg)"
 echo_background_cyan="$(echo_color cyan bg)"
 echo_background_white="$(echo_color white bg bold)"
-echo_background_orange="$(echo_color red bg bright)"
+echo_background_orange="$(echo_color orange bg)"
 
 echo_normal="$(echo_color reset)"
 echo_reset_color="$(__make_echo '' 39)"

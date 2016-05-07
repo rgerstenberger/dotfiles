@@ -1,8 +1,8 @@
 [hub]
         protocol = https
 [user]
-        name = Rob Gerstenberger
-        email = rgerstenberger@walmartlabs.com
+	name = Rob Gerstenberger
+	email = rob.gerstenberger@formidable.com
 [credential]
         helper = osxkeychain
 [alias]
@@ -15,8 +15,8 @@
         # shortcuts
         co = checkout
         c  = commit
-        s  = status -sb
-        b  = branch
+        s  = status
+        b  = checkout -b
         a  = add -A .
 
         # Diffs
