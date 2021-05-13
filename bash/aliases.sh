@@ -43,3 +43,15 @@ if $(gls &>/dev/null)
 then
   alias ls="gls -F --color"
 fi
+
+alias fuuu="rm -rf package-lock.json && rm -rf node_modules && npm install --prefer-offline --no-audit"
+
+alias nexttag='git tag -fa "nextjs-env-perf" -m "nextjs-env-perf" && git tag -fa "nextjs-env-perfz" -m "nextjs-env-perfz" && git tag -fa "nextjs-env-qe101" -m "nextjs-env-qe101" && git tag -fa "nextjs-env-qa" -m "nextjs-env-qa" && git tag -fa "nextjs-env-qaz" -m "nextjs-env-qaz" && git tag -fa "nextjs-env-production" -m "nextjs-env-production" && git tag -fa "nextjs-env-productionz" -m "nextjs-env-productionz"'
+
+mcd () {
+  mkdir "$1" && cd "$1"
+}
+
+gcd () {
+  git clone "$1" && cd "$1"
+}
