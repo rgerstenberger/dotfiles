@@ -2,11 +2,6 @@
 export DOTFILES=$HOME/.dotfiles
   export OS=`uname -s`
 
-# source every .sh file in this rep
-for config_file in $(find $DOTFILES -iname "*.sh"); do
-  source $config_file
-done
-
 # If OSX
 if [ $OS == "Darwin" ]; then
   # Source .sh.osx files if we're running OSX
@@ -35,6 +30,7 @@ export NODE_OPTIONS=--max-old-space-size=8192
 
 #setup z
 . ~/z/z.sh
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 ###-begin-npm-completion-###
 #
@@ -96,3 +92,9 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+# source every .sh file in this rep
+for config_file in $(find $DOTFILES -iname "*.sh"); do
+  source $config_file
+done
+

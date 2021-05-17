@@ -60,7 +60,7 @@
         merge = refs/heads/master
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+	editor = subl -w
         ignorecase = false
 [apply]
         whitespace = nowarn

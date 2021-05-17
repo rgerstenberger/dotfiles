@@ -12,6 +12,8 @@ function ssh_info {
 }
 ssh_connection_info="$(ssh_info)"
 
+NODE_VERSION="$(nvm current)"
+
 # Create the Ruby info string
 function ruby_info {
   if ! [ -z "$(ruby_version_prompt)" ]; then
@@ -29,7 +31,7 @@ case $TERM in
   TITLEBAR=""
   ;;
 esac
-PROMPT="${TITLEBAR}${cyan}\u${ssh_connection_info}${reset_color}${normal}:${reset_color}${green}\w ${ruby_info}${reset_color}${normal}\$(scm_char) \$(scm_prompt_info)\n${reset_color}${green}❯${reset_color}${normal} "
+PROMPT="${TITLEBAR}${cyan}node $NODE_VERSION${reset_color}${normal} ${reset_color}${green}\w ${ruby_info}${reset_color}${normal}\$(scm_char) \$(scm_prompt_info)\n${reset_color}${green}❯${reset_color}${normal} "
 
 
 # scm themeing
